@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container text-center mx-auto my-5">
+
+        <div class="row my-auto mx-auto">
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="border px-4 pt-3 rounded" style="background-color: white">
+
+                    <h4>Welcome to my estimated tax payment calculator</h4>
+
+                    <p>Because the government just won't tell you how much you owe!</p>
+
+                </div>
+
+            </div>
+
+            <div class="col-sm-12 col-md-6 my-auto">
+
+                <div class="px-5">
+
+                    <a class="" href="{% url 'get-info' %}" style="text-decoration: none; color: black">
+
+                        <div class="rounded p-3 getStarted" style="background-color: white">
+
+                            <h4>Get started</h4>
+
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <style>
+
+        .getStarted:hover {
+            transform: scale(1.1);
+            transition: .5s;
+        }
+
+    </style>
+
+{% endblock %}

@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load humanize %}
+
+{% block content %}
+
+    <h2 class="text-center pt-3">Calculate Estimated Taxes</h2>
+
+    <div class="container mx-auto p-4">
+
+        <form method="post" class="text-center pb-4">
+            {% csrf_token %}
+            <div class="row">
+                {% for field in form %}
+                    <div class="col-md-4 py-1" style="font-weight: 500">
+                        {{ field|as_crispy_field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <input class="btn btn-primary btn-lg" type="submit" value="Calculate">
+        </form>
+
+        <hr>
+
+        <h3 class="text-center">Results</h3>
+
+        <div class="rounded mb-4 py-3 px-3 mt-3 mx-5 text-center" style="background-color: white">
+
+            <div class="row">
+
+                <div class="col-sm-12 col-md-4">
+                    <h6>Federal Tax Owed</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if federal_tax %}
+                        <h4>${{ federal_tax|add:self_employment_tax|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <h6>State Tax Owed</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if state_tax %}
+                        <h4>${{ state_tax|add:local_tax|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <h6>Total Tax Owed</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if total_tax %}
+                        <h4>${{ total_tax|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            {# This section expands #}
+            <a class="btn btn-sm btn-outline-primary my-2" type="button" data-bs-toggle="collapse"
+               data-bs-target="#collapseprocess" aria-expanded="false" aria-controls="collapseprocess"
+               style="text-decoration: none">Breakdown
+            </a>
+
+            <div class="pb-3 collapse" id="collapseprocess">
+                <hr>
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>Total Income</h6>
+                        <h4>${{ total_income|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>Taxable Federal Income</h6>
+                        <h4>${{ f_taxable_income|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>Taxable State Income</h6>
+                        <h4>${{ s_taxable_income|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                </div>
+
+                <div class="row pt-4">
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>Self-Employment Tax <small>(15.3%)</small></h6>
+                        <h4>${{ self_employment_tax|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>Federal Income Tax</h6>
+                        <h4>${{ federal_tax|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>State Income Tax</h6>
+                        <h4>${{ state_tax|floatformat:2|intcomma }}</h4>
+                    </div>
+
+
+                </div>
+
+                <div class="row pt-4">
+
+                    <div class="col-sm-12 col-md-4">
+
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+
+                    </div>
+
+                    <div class="col-sm-12 col-md-4">
+                        <h6>(State) Local Income Tax</h6>
+                        <h4>${{ local_tax|floatformat:2|intcomma }}</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="my-3">
+
+        <h3 class="text-center">Estimated Tax Payments</h3>
+
+        <div class="rounded py-3 px-3 mt-4 mx-5 text-center" style="background-color: white">
+
+            <div class="row">
+
+                <h4 class="text-center" style="font-weight: 400">Federal</h4>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q1</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if f_q1 %}
+                        <h4>${{ f_q1|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q2</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if f_q2 %}
+                        <h4>${{ f_q2|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q3</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if f_q3 %}
+                        <h4>${{ f_q3|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q4</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if f_q4 %}
+                        <h4>${{ f_q4|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+            </div>
+
+            <div class="row pt-3">
+
+                <h4 class="text-center" style="font-weight: 400">State</h4>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q1</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if s_q1 %}
+                        <h4>${{ s_q1|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q2</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if s_q2 %}
+                        <h4>${{ s_q2|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q3</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if s_q3 %}
+                        <h4>${{ s_q3|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+                <div class="col-sm-12 col-md-3">
+                    <h6>Q4</h6>
+                    <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+                    {% if s_q4 %}
+                        <h4>${{ s_q4|floatformat:2|intcomma }}</h4>
+                    {% else %}
+                        <h4>$</h4>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}
