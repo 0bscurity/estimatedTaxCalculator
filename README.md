@@ -1,10 +1,10 @@
 <h3>This is my custom tax calculator built with Django and Bootstrap</h3>
 <p>Currently the state tax is only set up for one state, but a scalable solution to include other states is in the works.</p>
 
-![alt text](calculator_image.png)
+![Main Calc](calculator_image.png)
 
 <h3>Detail View</h3>
-![alt text](calculator_image2.png)
+![Detail View](calculator_image2.png)
 
 <h3>Estimated quarterly tax payment section for the self-employed</h3>
-![alt text](calculator_image3.png)
+![Quarterly Payments](calculator_image3.png)
