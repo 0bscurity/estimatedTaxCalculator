@@ -7,4 +7,4 @@
 <img src="images/calculator_image2.png">
 
 <h3>Estimated quarterly tax payment section for the self-employed</h3>
-
+<img src="images/calculator_image3.png">
