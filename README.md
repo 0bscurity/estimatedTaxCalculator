@@ -3,5 +3,8 @@
 
 ![Main Calc](images/calculator_image.png)
 
+<h3>Detail View</h3>
+<a href src="images/calculator_image2.png">
+
 <h3>Estimated quarterly tax payment section for the self-employed</h3>
 
