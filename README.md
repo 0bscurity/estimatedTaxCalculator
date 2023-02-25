@@ -1,4 +1,4 @@
-<h3>This is my custom tax calculator built with Django and Bootstrap</h3>
+<h3>This is my custom tax calculator built in Django</h3>
 <p>Currently the state tax is only set up for one state, but a scalable solution to include other states is in the works.</p>
 
 ![Main Calc](calculator_image.png)
