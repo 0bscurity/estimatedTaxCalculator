@@ -4,8 +4,8 @@ from django import forms
 class InfoForm(forms.Form):
     TAX_AREAS = (
         ('0', '----'),
-        ('.0306', 'Harford County'),
-        ('.0320', 'Baltimore County')
+        ('.0306', 'Blank County'),
+        ('.0320', 'Blank County')
     )
 
     other_income = forms.DecimalField(required=False)
