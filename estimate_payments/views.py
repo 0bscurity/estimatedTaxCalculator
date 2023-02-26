@@ -11,7 +11,7 @@ class Home(TemplateView):
 
 
 class GetInfo(FormView):
-    template_name = 'estimated_payments/get-information.html'
+    template_name = 'estimated_payments/tax-calculator.html'
     form_class = InfoForm
 
     def get_success_url(self):
@@ -23,15 +23,20 @@ class GetInfo(FormView):
         return context
 
     def form_valid(self, form):
-
+        filing_status = form.cleaned_data['filing_status']
         self_employment_income = form.cleaned_data['self_employment_income']
         deductions = form.cleaned_data['deductions']
         local_tax = form.cleaned_data['state_tax_area']
         other_income = form.cleaned_data['other_income']
+        dependents = form.cleaned_data['dependents']
 
-        calc = calculate_tax(other_income=other_income,
-                             self_employment_income=self_employment_income, deductions=deductions,
-                             local=local_tax)
+        calc = calculate_tax(filing_status=filing_status, self_employment_income=self_employment_income,
+                             other_income=other_income, dependents=dependents, deductions=deductions,
+                             local_tax=local_tax)
+
+        # calc = calculate_tax(other_income=other_income,
+        #                      self_employment_income=self_employment_income, deductions=deductions,
+        #                      local=local_tax, filing_status=filing_status)
 
         custom_context = {
             "form": form,
@@ -44,15 +49,15 @@ class GetInfo(FormView):
             "total_tax": calc[6],
             "total_income": calc[7],
 
-            "f_q1": calc[8],
-            "f_q2": calc[9],
-            "f_q3": calc[10],
-            "f_q4": calc[11],
-
-            "s_q1": calc[12],
-            "s_q2": calc[13],
-            "s_q3": calc[14],
-            "s_q4": calc[15],
+            # "f_q1": calc[8],
+            # "f_q2": calc[9],
+            # "f_q3": calc[10],
+            # "f_q4": calc[11],
+            #
+            # "s_q1": calc[12],
+            # "s_q2": calc[13],
+            # "s_q3": calc[14],
+            # "s_q4": calc[15],
         }
 
         context = self.get_context_data(form=form)
@@ -62,7 +67,7 @@ class GetInfo(FormView):
 
 
 # class GetInfo(FormView):
-#     template_name = 'estimated_payments/get-information.html'
+#     template_name = 'estimated_payments/tax-calculator.html'
 #     form_class = InfoForm
 #     success_url = '/results/'
 #

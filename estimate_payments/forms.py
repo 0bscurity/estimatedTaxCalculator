@@ -8,7 +8,15 @@ class InfoForm(forms.Form):
         ('.0320', 'Blank County')
     )
 
-    other_income = forms.DecimalField(required=False)
+    FILING_STATUS = (
+        ('single', 'For Single Filers'),
+        ('married', 'For Married Individuals Filing Joint Returns'),
+        ('head_of_household', 'For Head\'s of Households')
+    )
+
+    filing_status = forms.ChoiceField(choices=FILING_STATUS)
     self_employment_income = forms.DecimalField(required=False)
-    deductions = forms.DecimalField(required=False)
+    other_income = forms.DecimalField(required=False)
     state_tax_area = forms.ChoiceField(choices=TAX_AREAS)
+    deductions = forms.DecimalField(required=False)
+    dependents = forms.IntegerField(required=False)
