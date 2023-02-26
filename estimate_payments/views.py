@@ -49,15 +49,15 @@ class GetInfo(FormView):
             "total_tax": calc[6],
             "total_income": calc[7],
 
-            # "f_q1": calc[8],
-            # "f_q2": calc[9],
-            # "f_q3": calc[10],
-            # "f_q4": calc[11],
-            #
-            # "s_q1": calc[12],
-            # "s_q2": calc[13],
-            # "s_q3": calc[14],
-            # "s_q4": calc[15],
+            "f_q1": calc[8],
+            "f_q2": calc[9],
+            "f_q3": calc[10],
+            "f_q4": calc[11],
+
+            "s_q1": calc[12],
+            "s_q2": calc[13],
+            "s_q3": calc[14],
+            "s_q4": calc[15],
         }
 
         context = self.get_context_data(form=form)

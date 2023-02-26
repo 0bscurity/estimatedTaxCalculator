@@ -136,4 +136,21 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
     local_tax = float(state_taxable_income) * float(local_tax)
     total_tax = state_tax + federal_tax + se_tax + local_tax
 
-    return federal_taxable_income, state_taxable_income, federal_tax, state_tax, local_tax, se_tax, total_tax, gross_income
+    # Federal Quarterly Payments -------------------------------------------------------------------------
+    total_federal = federal_tax + se_tax
+    f_month = total_federal / 12
+    f_q1 = 3 * f_month
+    f_q2 = 2 * f_month
+    f_q3 = 3 * f_month
+    f_q4 = 4 * f_month
+
+    # State Quarterly Payments -------------------------------------------------------------------------
+    total_state = state_tax + local_tax
+    s_month = total_state / 12
+    s_q1 = 3 * s_month
+    s_q2 = 2 * s_month
+    s_q3 = 3 * s_month
+    s_q4 = 4 * s_month
+
+    return federal_taxable_income, state_taxable_income, federal_tax, state_tax, local_tax, se_tax, total_tax, \
+           gross_income, f_q1, f_q2, f_q3, f_q4, s_q1, s_q2, s_q3, s_q4
