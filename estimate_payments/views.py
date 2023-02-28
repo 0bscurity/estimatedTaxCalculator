@@ -58,6 +58,9 @@ class GetInfo(FormView):
             "s_q2": calc[13],
             "s_q3": calc[14],
             "s_q4": calc[15],
+
+            "social": calc[16],
+            "medicare": calc[17],
         }
 
         context = self.get_context_data(form=form)

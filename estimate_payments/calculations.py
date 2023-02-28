@@ -4,19 +4,21 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
     other_income = int(other_income or 0)
     deductions = int(deductions or 0)
     dependents = int(dependents or 0)
+    social_security_tax = 0
+    medicare_tax = 0
     # local_tax = int(local_tax or 0)
 
     # Define the tax brackets and rates for 2021 based on filing status
     if filing_status == "single":
         # Federal
         fed_tax_brackets = [
-            (0, 9950),
-            (9951, 40525),
-            (40526, 86375),
-            (86376, 164925),
-            (164926, 209425),
-            (209426, 523600),
-            (523601, float('inf'))
+            (0, 11000),
+            (11001, 44725),
+            (44726, 95375),
+            (95376, 182100),
+            (182101, 231250),
+            (231251, 578125),
+            (578126, float('inf'))
         ]
         fed_tax_rates = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]
         fed_standard_deduction = 12550
@@ -38,13 +40,13 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
     elif filing_status == "married":
         # Federal
         fed_tax_brackets = [
-            (0, 19900),
-            (19901, 81050),
-            (81051, 172750),
-            (172751, 329850),
-            (329851, 418850),
-            (418851, 628300),
-            (628301, float('inf'))
+            (0, 22000),
+            (22001, 89450),
+            (89451, 190750),
+            (190751, 364200),
+            (364201, 432500),
+            (432501, 693750),
+            (693751, float('inf'))
         ]
         fed_tax_rates = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]
         fed_standard_deduction = 25100
@@ -66,13 +68,13 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
     elif filing_status == "head_of_household":
         # Federal
         fed_tax_brackets = [
-            (0, 14200),
-            (14201, 54200),
-            (54201, 86350),
-            (86351, 164900),
-            (164901, 209400),
-            (209401, 523600),
-            (523601, float('inf'))
+            (0, 14650),
+            (14651, 55900),
+            (55901, 89050),
+            (89051, 170050),
+            (170051, 215950),
+            (215951, 539900),
+            (539901, float('inf'))
         ]
         fed_tax_rates = [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37]
         fed_standard_deduction = 18700
@@ -101,13 +103,19 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
 
     se_tax = min(max(net_se_income * 0.9235 * 0.153, 0), 8950.40)
 
-    # Calculate the taxable income based on filing status and dependents
+    # Calculate the taxable income based on filing status and dependents for all income
     if filing_status == "single":
         federal_taxable_income = net_income - (fed_standard_deduction + (dependents * 4450))
         state_taxable_income = net_income - (state_standard_deduction + (dependents * 3250))
     else:
         federal_taxable_income = net_income - (fed_standard_deduction + (dependents * 4450 * 2))
         state_taxable_income = net_income - (state_standard_deduction + (dependents * 3250))
+
+    # Calculate the taxable income based on filing status and dependents for other income
+    if filing_status == "single":
+        federal_taxable_income_other = other_income - (fed_standard_deduction + (dependents * 4450))
+    else:
+        federal_taxable_income_other = other_income - (fed_standard_deduction + (dependents * 4450 * 2))
 
     # Calculate the federal income tax using the tax brackets and rates
     federal_tax = 0
@@ -133,8 +141,19 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
             state_tax += (state_taxable_income - bracket_min + 1) * bracket_rate
             break
 
+    # Get social and medicare taxes if not self-employed
+    if other_income > 0:
+        social_security_tax = federal_taxable_income_other * .062
+        medicare_tax = federal_taxable_income_other * .0145
+
+    # Get local tax
     local_tax = float(state_taxable_income) * float(local_tax)
-    total_tax = state_tax + federal_tax + se_tax + local_tax
+
+    # Get total tax
+    if self_employment_income > 0:
+        total_tax = state_tax + federal_tax + se_tax + local_tax
+    else:
+        total_tax = state_tax + federal_tax + local_tax + medicare_tax + social_security_tax + se_tax
 
     # Federal Quarterly Payments -------------------------------------------------------------------------
     total_federal = federal_tax + se_tax
@@ -153,4 +172,4 @@ def calculate_tax(self_employment_income, other_income, deductions, dependents, 
     s_q4 = 4 * s_month
 
     return federal_taxable_income, state_taxable_income, federal_tax, state_tax, local_tax, se_tax, total_tax, \
-           gross_income, f_q1, f_q2, f_q3, f_q4, s_q1, s_q2, s_q3, s_q4
+           gross_income, f_q1, f_q2, f_q3, f_q4, s_q1, s_q2, s_q3, s_q4, social_security_tax, medicare_tax
