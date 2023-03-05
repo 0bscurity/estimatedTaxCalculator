@@ -1,0 +1,337 @@
+p {
+    font-family: "JetBrains Mono Medium", monospace;
+}
+
+
+/* Home page action button animation */
+.getStarted:hover {
+    transform: scale(1.1);
+    transition: .5s;
+}
+
+/* Home page directional fade in */
+.fadeInLeft {
+    color: black;
+    animation: fadeInLeft 1s ease-in-out;
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-300px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeInTop {
+    color: black;
+    animation: fadeInTop 1.2s ease-in-out;
+}
+
+@keyframes fadeInTop {
+    from {
+        opacity: 0;
+        transform: translateY(-300px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeInBottom {
+    color: black;
+    animation: fadeInBottom 2s ease-in-out;
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(200px);
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Homepage fade in linear */
+.fadeInOne {
+    animation: fadeInOne 1s ease-in-out;
+}
+
+@keyframes fadeInOne {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeInTwo {
+    animation: fadeInTwo 2s ease-in-out;
+}
+
+@keyframes fadeInTwo {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeInFive {
+    animation: fadeInFive 5s ease-in-out;
+}
+
+@keyframes fadeInFive {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Homepage read more arrow */
+.container-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto auto 1rem auto;
+}
+
+.text-label {
+    text-transform: uppercase;
+    font-family: "JetBrains Mono Medium", monospace;
+    font-size: .9rem;
+    letter-spacing: 0.2em;
+    color: #000000;
+    padding-bottom: .8rem;
+}
+
+.arrow-circle-down {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin: 16px 0;
+    /*fill: #fff;*/
+}
+
+.bounce {
+    -webkit-animation: bounce 2s;
+    animation: bounce 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes bounce {
+    0%,
+    25%,
+    50%,
+    75%,
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    60% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes bounce {
+    0%,
+    25%,
+    50%,
+    75%,
+    100% {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+    }
+    40% {
+        -webkit-transform: translateY(-20px);
+        transform: translateY(-20px);
+    }
+    60% {
+        -webkit-transform: translateY(-12px);
+        transform: translateY(-12px);
+    }
+}
+
+/* ------------------------------------ Homepage Calculator Animation --------------------------- */
+.section_our_solution .row {
+    align-items: center;
+}
+
+.our_solution_category {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.our_solution_category .solution_cards_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.solution_cards_box .solution_card {
+    flex: 0 50%;
+    background: #fff;
+    box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+    0 5px 15px 0 rgba(37, 44, 97, 0.15);
+    border-radius: 15px;
+    margin: 8px;
+    padding: 10px 15px;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    min-height: 265px;
+    transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover {
+    background: #309df0;
+    color: #fff;
+    transform: scale(1.1);
+    z-index: 9;
+}
+
+.solution_cards_box .solution_card:hover::before {
+    background: rgb(85 108 214 / 10%);
+}
+
+.solution_cards_box .solution_card:hover .solu_title h3,
+.solution_cards_box .solution_card:hover .solu_description p {
+    color: #fff;
+}
+
+.solution_cards_box .solution_card:before {
+    content: "";
+    position: absolute;
+    background: rgb(85 108 214 / 5%);
+    width: 170px;
+    height: 400px;
+    z-index: -1;
+    transform: rotate(42deg);
+    right: -56px;
+    top: -23px;
+    border-radius: 35px;
+}
+
+.solution_cards_box .solution_card:hover .solu_description button {
+    background: #fff !important;
+    color: #309df0;
+}
+
+.solution_card .solu_title h3 {
+    color: #212121;
+    font-size: 1.2rem;
+    margin-top: 18px;
+    margin-bottom: 13px;
+}
+
+.solution_card .solu_description p {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+/*.solution_card .solu_description button {*/
+/*    border: 0;*/
+/*    border-radius: 15px;*/
+/*    background: linear-gradient(*/
+/*            140deg,*/
+/*            #42c3ca 0%,*/
+/*            #42c3ca 50%,*/
+/*            #42c3cac7 75%*/
+/*    ) !important;*/
+/*    color: #fff;*/
+/*    font-weight: 500;*/
+/*    font-size: 1rem;*/
+/*    padding: 5px 16px;*/
+/*}*/
+
+.our_solution_content h1 {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.hover_color_bubble {
+    position: absolute;
+    background: rgb(54 81 207 / 15%);
+    width: 100rem;
+    height: 100rem;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    top: 16rem;
+    border-radius: 50%;
+    transform: rotate(-36deg);
+    left: -18rem;
+    transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover .hover_color_bubble {
+    top: 0rem;
+}
+
+.solution_cards_box .solution_card .so_top_icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #fff;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.solution_cards_box .solution_card .so_top_icon img {
+    width: 40px;
+    height: 50px;
+    object-fit: contain;
+}
+
+/*start media query*/
+@media screen and (min-width: 320px) {
+    .sol_card_top_3 {
+        position: relative;
+        top: 0;
+    }
+
+    .our_solution_category {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .our_solution_category .solution_cards_box {
+        flex: auto;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .our_solution_category .solution_cards_box {
+        flex: 1;
+    }
+}
+
+@media only screen and (min-width: 1024px) {
+    .sol_card_top_3 {
+        position: relative;
+        top: -3rem;
+    }
+
+    .our_solution_category {
+        width: 50%;
+        margin: 0 auto;
+    }
+}
+
