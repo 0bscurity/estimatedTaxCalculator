@@ -60,10 +60,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'estimatedTax.urls'
 
+ESTIMATED_PAYMENTS_TEMPLATES = 'templates/estimated_payments'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'templates', ESTIMATED_PAYMENTS_TEMPLATES]
         ,
         'APP_DIRS': True,
         'OPTIONS': {

@@ -1,0 +1,316 @@
+{% load humanize %}
+
+<h3 class="text-center">Results</h3>
+
+<div class="rounded mb-4 py-3 px-3 mt-3 mx-lg-5 text-center" style="background-color: white">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-4">
+            <h6>Federal Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if federal_tax %}
+                <h4>
+                    ${{ federal_tax|add:self_employment_tax|add:social|add:medicare|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-4">
+            <h6>State Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if state_tax %}
+                <h4>${{ state_tax|add:local_tax|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-4">
+            <h6>Total Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if total_tax %}
+                <h4>${{ total_tax|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+    </div>
+
+    {# This section expands #}
+    <a class="btn btn-sm btn-outline-primary my-2" type="button" data-bs-toggle="collapse"
+       data-bs-target="#collapseprocess" aria-expanded="false" aria-controls="collapseprocess"
+       style="text-decoration: none">Breakdown
+    </a>
+
+    <div class="pb-3 collapse" id="collapseprocess">
+        <hr>
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Total Income</h6>
+                <h4>${{ total_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Taxable Federal Income</h6>
+                <h4>${{ f_taxable_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Taxable State Income</h6>
+                <h4>${{ s_taxable_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Self-Employment Tax</h6>
+                <h4>${{ self_employment_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Federal Income Tax</h6>
+                <h4>${{ federal_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>State Income Tax</h6>
+                <h4>${{ state_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                {% if social > 0 %}
+                    <h6>Social Security Tax <small>(W2)</small></h6>
+                    <h4>${{ social|floatformat:2|intcomma }}</h4>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>(State) Local Income Tax</h6>
+                <h4>${{ local_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                {% if medicare > 0 %}
+                    <h6>Medicare Tax <small>(W2)</small></h6>
+                    <h4>${{ medicare|floatformat:2|intcomma }}</h4>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<h4 class="text-center">Quarterly Estimated Payments</h4>
+
+<div class="rounded py-3 mb-1 px-3 mt-4 mx-lg-5 text-center" style="background-color: white">
+
+    <div class="row">
+
+        <h4 class="text-center" style="font-weight: 400">Federal</h4>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q1</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if f_q1 %}
+                <h4>${{ f_q1|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q2</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if f_q2 %}
+                <h4>${{ f_q2|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q3</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if f_q3 %}
+                <h4>${{ f_q3|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q4</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if f_q4 %}
+                <h4>${{ f_q4|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="row pt-3">
+
+        <h4 class="text-center" style="font-weight: 400">State</h4>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q1</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if s_q1 %}
+                <h4>${{ s_q1|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q2</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if s_q2 %}
+                <h4>${{ s_q2|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q3</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if s_q3 %}
+                <h4>${{ s_q3|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-3">
+            <h6>Q4</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if s_q4 %}
+                <h4>${{ s_q4|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+    </div>
+
+    {# This section expands #}
+    <a class="btn btn-sm btn-outline-primary my-0" type="button" data-bs-toggle="collapse"
+       data-bs-target="#collapsemoreinfo" aria-expanded="false" aria-controls="collapseprocess"
+       style="text-decoration: none">More Information
+    </a>
+
+    <div class="pb-3 collapse" id="collapsemoreinfo">
+
+        <hr>
+        <div class="row mx-auto d-flex text-start">
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="px-3 text-center">
+                    <h5>Payment Schedule for 2023</h5>
+                </div>
+
+                <table class="table table-striped">
+                    <caption>Payment Schedule for 2023</caption>
+                    <thead>
+                    <tr>
+                        <th scope="col">Quarter</th>
+                        <th scope="col">When Income Earned</th>
+                        <th scope="col">Due Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Q1</th>
+                        <td>January 1 to March 31</td>
+                        <td>April 15, 2023</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Q2</th>
+                        <td>April 1 to May 31</td>
+                        <td>June 15, 2023</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Q3</th>
+                        <td>June 1 to August 31</td>
+                        <td>September 15, 2023</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Q4</th>
+                        <td>September 1 to December 31</td>
+                        <td>January 15, 2024</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+
+                <div class="px-3">
+                    <h5 class="text-center">Resources</h5>
+
+                    <div class="resources" style="font-size: large">
+                        <ul>
+                            <li>
+                                <a href="https://www.eftps.gov/eftps/">
+                                    Electronic Federal Tax Payment System (EFTPS)
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://interactive.marylandtaxes.gov/Individuals/IndivLogin/default.asp">
+                                    Maryland Electronic Tax Payment System
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.irs.gov/pub/irs-pdf/f1040es.pdf">
+                                    Form 1040-ES can be used to calculate federal estimated payments
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<small class="mx-lg-5">* The results provided by this calculator should not be taken as financial advice.</small>
