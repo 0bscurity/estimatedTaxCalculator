@@ -16,8 +16,8 @@ class BusinessCalculatorForm(forms.Form):
         ('head_of_household', 'For Head\'s of Households')
     )
 
-    filing_status = forms.ChoiceField(choices=FILING_STATUS)
-    self_employment_income = forms.DecimalField(required=False)
-    state_tax_area = forms.ChoiceField(choices=TAX_AREAS)
-    deductions = forms.DecimalField(required=False)
-    dependents = forms.IntegerField(required=False)
+    filing_status = forms.ChoiceField(choices=FILING_STATUS, required=False, label='FILING STATUS')
+    self_employment_income = forms.DecimalField(required=False, label='SELF EMPLOYMENT INCOME')
+    deductions = forms.DecimalField(required=False, label='DEDUCTIONS')
+    state_tax_area = forms.ChoiceField(choices=TAX_AREAS, required=False, label='STATE TAX AREA')
+    dependents = forms.IntegerField(required=False, label='DEPENDENTS')
