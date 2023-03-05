@@ -1,11 +1,13 @@
 from django import forms
 
 
-class InfoForm(forms.Form):
+class BusinessCalculatorForm(forms.Form):
     TAX_AREAS = (
         ('0', '----'),
-        ('.0306', 'Blank County'),
-        ('.0320', 'Blank County')
+        ('.0306', 'Harford County'),
+        ('.0320', 'Baltimore City'),
+        ('.0320', 'Baltimore County'),
+        ('.0296', 'Fredrick County'),
     )
 
     FILING_STATUS = (
@@ -16,7 +18,6 @@ class InfoForm(forms.Form):
 
     filing_status = forms.ChoiceField(choices=FILING_STATUS)
     self_employment_income = forms.DecimalField(required=False)
-    other_income = forms.DecimalField(required=False)
     state_tax_area = forms.ChoiceField(choices=TAX_AREAS)
     deductions = forms.DecimalField(required=False)
     dependents = forms.IntegerField(required=False)

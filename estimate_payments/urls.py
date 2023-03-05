@@ -4,6 +4,5 @@ from estimate_payments.views import *
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
-    path('tax-calculator/', GetInfo.as_view(), name='get-info'),
-    path('results/', Result.as_view(), name='results'),
+    path('self-employment-tax-calculator/', BusinessCalculator.as_view(), name='business-calculator'),
 ]
