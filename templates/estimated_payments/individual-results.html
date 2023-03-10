@@ -1,0 +1,127 @@
+{% load humanize %}
+
+<h3 class="text-center">RESULTS</h3>
+
+<div class="rounded mb-4 py-3 px-3 mt-3 mx-lg-5 text-center" style="background-color: white">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-4">
+            <h6>Federal Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if federal_tax %}
+                <h4>
+                    ${{ federal_tax|add:social|add:medicare|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-4">
+            <h6>State Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if state_tax %}
+                <h4>${{ state_tax|add:local_tax|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+        <div class="col-sm-12 col-md-4">
+            <h6>Total Tax Owed</h6>
+            <hr class="my-0 pb-1 mx-auto" style="width: 50%">
+            {% if total_tax %}
+                <h4>${{ total_tax|floatformat:2|intcomma }}</h4>
+            {% else %}
+                <h4>$</h4>
+            {% endif %}
+        </div>
+
+    </div>
+
+
+    <div class="pb-3">
+        <hr>
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Total Income</h6>
+                <h4>${{ total_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Taxable Federal Income</h6>
+                <h4>${{ f_taxable_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Taxable State Income</h6>
+                <h4>${{ s_taxable_income|floatformat:2|intcomma }}</h4>
+            </div>
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>Federal Income Tax</h6>
+                <h4>${{ federal_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>State Income Tax</h6>
+                <h4>${{ state_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                {% if social > 0 %}
+                    <h6>Social Security Tax</h6>
+                    <h4>${{ social|floatformat:2|intcomma }}</h4>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <h6>(State) Local Income Tax</h6>
+                <h4>${{ local_tax|floatformat:2|intcomma }}</h4>
+            </div>
+
+        </div>
+
+        <div class="row pt-4">
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                {% if medicare > 0 %}
+                    <h6>Medicare Tax</h6>
+                    <h4>${{ medicare|floatformat:2|intcomma }}</h4>
+                {% endif %}
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<small class="mx-lg-5">* Results provided by this tax calculator are for informational purposes only. They should not be
+    taken as financial, tax, or legal advice.</small>

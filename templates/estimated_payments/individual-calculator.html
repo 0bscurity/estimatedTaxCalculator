@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <div class="container-fluid mx-auto px-lg-5 py-5 vh-100" style="font-family: 'JetBrains Mono Medium',monospace">
+
+        <div class="row pb-5">
+
+            <div class="col-sm-12 col-lg-4">
+
+                <div class="border rounded px-5 pt-4" style="background: linear-gradient(#e8dcbc, #ded3e3)">
+
+                    <h4 class="text-center pb-4">INDIVIDUAL TAX CALCULATOR</h4>
+
+                    <form method="post" class="text-center pb-4">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="row pb-3 text-start" style="font-weight: 400">
+                                {{ field|as_crispy_field }}
+                            </div>
+                        {% endfor %}
+                        <input class="btn btn-primary btn-lg mt-4 mb-4" type="submit"
+                               value="Calculate">
+                    </form>
+                </div>
+
+            </div>
+
+
+            <div class="col-sm-12 col-lg-8 pt-3">
+
+                {% include 'individual-results.html' %}
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+{% endblock %}

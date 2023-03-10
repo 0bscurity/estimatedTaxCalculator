@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, FormView, ListView
 
-from estimate_payments.calculations import calculate_se_tax
-from estimate_payments.forms import BusinessCalculatorForm
+from estimate_payments.calculations import calculate_se_tax, calculate_individual_tax
+from estimate_payments.forms import BusinessCalculatorForm, IndividualCalculatorForm
 
 
 class Home(TemplateView):
@@ -54,6 +54,48 @@ class BusinessCalculator(FormView):
             "s_q2": results.s_q2,
             "s_q3": results.s_q3,
             "s_q4": results.s_q4,
+        }
+
+        context = self.get_context_data(form=form)
+        context.update(custom_context)
+
+        return render(self.request, self.template_name, context)
+
+
+class IndividualCalculator(FormView):
+    template_name = 'estimated_payments/individual-calculator.html'
+    form_class = IndividualCalculatorForm
+
+    def get_success_url(self):
+        return self.request.path
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = self.form_class
+        return context
+
+    def form_valid(self, form):
+        filing_status = form.cleaned_data['filing_status']
+        income = form.cleaned_data['income']
+        local_tax = form.cleaned_data['state_tax_area']
+        dependents = form.cleaned_data['dependents']
+
+        results = calculate_individual_tax(filing_status=filing_status, income=income, dependents=dependents,
+                                           local_tax=local_tax)
+
+        custom_context = {
+            "form": form,
+            "total_income": results.gross_income,
+            "total_tax": results.total_tax,
+            "s_taxable_income": results.state_taxable_income,
+            "f_taxable_income": results.federal_taxable_income,
+            "social": results.social_security_tax,
+            "medicare": results.medicare_tax,
+            "federal_tax": results.federal_tax,
+            "federal_sd": results.federal_sd,
+            "state_tax": results.state_tax,
+            "state_sd": results.state_sd,
+            "local_tax": results.local_tax,
         }
 
         context = self.get_context_data(form=form)
