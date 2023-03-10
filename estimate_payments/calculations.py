@@ -333,9 +333,11 @@ def calculate_individual_tax(income, dependents, filing_status, local_tax):
     # Get local tax
     local_tax = float(state_taxable_income) * float(local_tax)
 
+    # TODO: 6.20% 8 160,000 up to 9,932
     # Get social security tax
     social_security_tax = federal_taxable_income * .062
 
+    # TODO: 1.45 on first 200,000, plus 2.35 in excess of 200,000
     # Get medicare tax
     medicare_tax = federal_taxable_income * .0145
 
