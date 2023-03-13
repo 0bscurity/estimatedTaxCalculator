@@ -40,6 +40,10 @@ INSTALLED_APPS = [
 
     # Local
     'estimate_payments',
+    'accounts',
+    'mileage_tracker',
+
+    # Non-Local
     'crispy_forms',
     'crispy_bootstrap5',
 ]

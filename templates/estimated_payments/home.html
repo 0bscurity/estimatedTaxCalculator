@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% block title %}Home - Welcome!{% endblock %}
+
 {% block content %}
 
     <div class="container text-center mx-auto my-5">
@@ -17,7 +20,7 @@
                         </div>
 
                         <h1 class="fadeInOne" style="font-family: 'JetBrains Mono Medium', monospace">
-                            Welcome to the Ultimate Tax Calculator Hub!
+                            Welcome to the Ultimate Tax Planning Hub!
                         </h1>
 
                         <div class="wrapper py-5 fadeInBottom" style="z-index: 1">
@@ -33,12 +36,13 @@
                     </div>
 
                     <div class="row mx-auto">
-                        <div class="rounded shadow-lg p-3" style="background: linear-gradient(white, whitesmoke); z-index: 999">
+                        <div class="rounded shadow-lg p-4 py-5"
+                             style="background: linear-gradient(white, whitesmoke); z-index: 999">
                             <h5 class="fadeInTwo" style="font-family: 'JetBrains Mono Medium', monospace">Whether you're
                                 a
                                 small business owner,
-                                an independent contractor, or an individual taxpayer, these tax calculators are
-                                <strong>essential resources</strong> for anyone wanting to save time, money, and any
+                                an independent contractor, or an individual taxpayer, these resources are
+                                <strong>essential</strong> for anyone wanting to save time, money, and any
                                 <strong>uninvited</strong> gray hairs.</h5>
                         </div>
                     </div>
@@ -49,7 +53,7 @@
 
         </div>
 
-        <div class="row my-auto mx-auto py-5">
+        <div class="row my-auto mx-auto pt-5 pb-1">
 
             <div class="container-footer pt-4 fadeInFive">
                 <span class="text-label">try it out</span>
@@ -63,7 +67,9 @@
 
         <div class="row my-auto mx-auto pt-5">
 
-            {% include 'home-product-buttons.html' %}
+                <h3 class="text-muted pb-3" style="font-weight: 400">Tax Calculators</h3>
+
+                {% include 'home-product-buttons.html' %}
 
         </div>
 
