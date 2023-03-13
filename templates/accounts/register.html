@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load crispy_forms_filters %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
 
@@ -11,10 +11,10 @@
                 <div class="card bg-light" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
 
-                        <div class="mb-md-5 mt-md-4 pb-5">
+                        <div class="mb-md-3 mt-md-4 pb-4">
 
-                            <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p class="text-muted mb-5">Please enter your login and password!</p>
+                            <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
+{#                            <p class="text-muted mb-5">Please enter your login and password!</p>#}
 
                             <form method="post">
                                 {% csrf_token %}
@@ -26,15 +26,9 @@
 
                                 {#                            <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#">Forgot password?</a></p>#}
 
-                                <button class="btn btn-outline-success btn-lg px-5 mt-4" type="submit">Login</button>
+                                <button class="btn btn-outline-success btn-lg px-5 mt-4" type="submit">Register</button>
 
                             </form>
-                        </div>
-
-                        <div>
-                            <p class="mb-0">Don't have an account? <a href="{% url 'register' %}" class="text-muted fw-bold">Sign
-                                Up</a>
-                            </p>
                         </div>
 
                     </div>

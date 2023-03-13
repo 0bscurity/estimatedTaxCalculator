@@ -6,7 +6,7 @@ from estimate_payments.forms import BusinessCalculatorForm, IndividualCalculator
 
 
 class Home(TemplateView):
-    template_name = 'estimated_payments/home.html'
+    template_name = 'home.html'
 
 
 class BusinessCalculator(FormView):
