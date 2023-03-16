@@ -6,7 +6,7 @@
 
     {% now "H" as current_hour %}
 
-    <div class="container min-vh-100">
+    <div class="container-fluid min-vh-100">
 
         <div class="row">
             <div class="welcome text-center pt-lg-2 fadeInOne">
@@ -20,9 +20,10 @@
                     {% endif %}
                 </div>
             </div>
+
         </div>
 
-        <div class="row">
+        <div class="row mx-auto pt-1 px-lg-4">
 
             {% include 'action-buttons.html' %}
 
