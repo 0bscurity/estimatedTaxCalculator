@@ -4,8 +4,41 @@
 
 {% block content %}
 
-    <div class="min-vh-100">
+    {% now "H" as current_hour %}
+
+    <div class="container min-vh-100">
+
+        <div class="row">
+            <div class="welcome text-center pt-lg-2 fadeInOne">
+                <div class="p-2">
+                    {% if current_hour|add:0 < 12 %}
+                        <p>Good Morning, {{ user.username }}</p>
+                    {% elif current_hour|add:0 < 17 %}
+                        <p>Good Afternoon, {{ user.username }}</p>
+                    {% else %}
+                        <p>Good Evening, {{ user.username }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+
+            {% include 'action-buttons.html' %}
+
+        </div>
 
     </div>
+
+    <style>
+
+        .welcome {
+            font-family: "JetBrains Mono Medium", monospace;
+            font-size: xx-large;
+            font-weight: 700;
+            font-style: italic;
+        }
+
+    </style>
 
 {% endblock %}

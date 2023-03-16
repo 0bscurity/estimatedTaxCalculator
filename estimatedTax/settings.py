@@ -65,11 +65,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'estimatedTax.urls'
 
 ESTIMATED_PAYMENTS_TEMPLATES = 'templates/estimated_payments'
+MILEAGE_TRACKER_TEMPLATES = 'templates/mileage_tracker'
+ACCOUNTS_TEMPLATES = 'templates/accounts'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates', ESTIMATED_PAYMENTS_TEMPLATES]
+        'DIRS': [BASE_DIR / 'templates', ESTIMATED_PAYMENTS_TEMPLATES, MILEAGE_TRACKER_TEMPLATES, ACCOUNTS_TEMPLATES]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
@@ -118,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
