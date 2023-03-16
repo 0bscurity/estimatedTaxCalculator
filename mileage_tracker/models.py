@@ -3,7 +3,8 @@ from django.db import models
 
 
 class Vehicle(models.Model):
-    year = models.IntegerField(null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    year = models.CharField(max_length=4, null=True)
     make = models.CharField(max_length=56)
     model = models.CharField(max_length=56)
     gas_mileage = models.DecimalField(max_digits=5, decimal_places=2)
