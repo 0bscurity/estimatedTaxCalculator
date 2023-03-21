@@ -10,20 +10,26 @@
 
         <div class="row">
             <div class="welcome text-center pt-lg-2 fadeInOne">
-                <div class="p-2">
+                <div class="pt-2">
                     {% if current_hour|add:0 < 12 %}
-                        <p>Good Morning, {{ user.username }}</p>
+                        <p>Good Morning, {{ user.username }}
+                            <i class="fa-solid fa-mug-hot fadeInTop"></i>
+                        </p>
                     {% elif current_hour|add:0 < 17 %}
-                        <p>Good Afternoon, {{ user.username }}</p>
+                        <p>Good Afternoon, {{ user.username }}
+                            <i class="fa-solid fa-map-location-dot fadeInTop"></i>
+                        </p>
                     {% else %}
-                        <p>Good Evening, {{ user.username }}</p>
+                        <p>Good Evening, {{ user.username }}
+                            <i class="fa-solid fa-cloud-moon fadeInTop"></i>
+                        </p>
                     {% endif %}
                 </div>
             </div>
 
         </div>
 
-        <div class="row mx-auto pt-1 px-lg-4">
+        <div class="row mx-auto px-lg-4">
 
             {% include 'action-buttons.html' %}
 
@@ -34,9 +40,8 @@
     <style>
 
         .welcome {
-            font-family: "JetBrains Mono Medium", monospace;
-            font-size: xx-large;
-            font-weight: 700;
+            font-size: x-large;
+            font-weight: 500;
             font-style: italic;
         }
 

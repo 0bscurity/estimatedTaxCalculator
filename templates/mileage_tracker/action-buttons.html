@@ -1,9 +1,53 @@
-<div class="col-sm-12 col-lg-6">
+{# Overview #}
+<div class="col-sm-12 col-lg-6 pb-2 pb-lg-0">
+
+    <div class="wrapper p-3 shadow rounded" style="background-color: whitesmoke">
+
+        <h3 class="text-muted text-center mb-0" style="font-weight: 400">Overview</h3>
+        <hr class="mb-1" style="color: #495D63; height: 5px">
+
+        <div class="row pt-3">
+
+            <div class="col-sm-12 col-lg-7 text-center align-items-center">
+
+                <a href="#" class="btn btn-lg btn-outline-success p-3 mb-2 mb-lg-0" type="button"
+                   style="font-weight: 500; font-size: x-large">
+                    <i class="fa-regular fa-2x fa-calendar-plus"></i><br>Create Entry
+                </a>
+                <a href="#" class="btn btn-lg btn-outline-primary p-3" type="button"
+                   style="font-weight: 500; font-size: x-large">
+                    <i class="fa-solid fa-2x fa-print"></i></i><br>Print Report
+                </a>
+
+            </div>
+
+            <div class="col-sm-12 col-lg-5 text-end pt-4 pt-lg-0">
+
+                <h4 class="text-muted" style="font-weight: 400; color: #495D63">
+                    You have made <span style="font-size: xx-large; font-weight: 500; color: #629677">136</span>
+                    entries,
+                </h4>
+                {#                <br><br>#}
+                <h4 class="text-muted" style="font-size: x-large; color: #495D63; font-weight: 400">
+                    Driven <span style="font-size: xx-large; font-weight: 500; color: #629677">1300</span> miles,
+                </h4>
+                {#                <br><br>#}
+                <h4 class="text-muted" style="font-size: x-large; color: #495D63; font-weight: 400">
+                    Saved <span style="font-size: xx-large; font-weight: 500; color: #629677">$1,255</span>.
+                </h4>
+
+
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 
+{# General Tools #}
 <div class="col-sm-12 col-lg-3 pb-2 pb-lg-0">
-    <div class="wrapper p-3 border shadow rounded" style="background-color: whitesmoke">
+    <div class="wrapper p-3 shadow rounded" style="background-color: whitesmoke">
 
         <h3 class="text-muted text-center mb-0" style="font-weight: 400">General Tools | <i
                 class="fa-regular fa-calendar-days"></i></h3>
@@ -33,18 +77,14 @@
     </div>
 </div>
 
-
+{# Manage Vehicles #}
 <div class="col-sm-12 col-lg-3 pb-2 pb-lg-0">
 
-    <div class="wrapper p-3 border shadow rounded text-center" style="background-color: lightgrey">
+    <div class="wrapper p-3 shadow rounded text-center" style="background-color: lightgrey">
 
         <h3 class="text-muted mb-0" style="font-weight: 400">Manage Vehicles | <i class="fa-solid fa-car"></i></h3>
         {# TODO: Create custom user model with 'default_vehicle' field #}
         <p class="text-muted" style="font-weight: 500; font-size: small">Default: 2010 Mitsubishi Galant</p>
-
-        <a href="#" class="btn btn-md btn-dark mb-2" type="button">
-            Edit Vehicle
-        </a>
 
         <a href="#" class="btn btn-md btn-dark mb-2" type="button">
             Add New Vehicle
@@ -54,11 +94,11 @@
 
         {% if vehicles %}
             {% for vehicle in vehicles %}
-                <h5>{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }} | {{ vehicle.gas_mileage }} MPG
-                    <a class="dark-gear" href="#" style="text-decoration: none">
-                        <i class="fa-solid fa-gear ps-1"></i>
-                    </a>
-                </h5>
+                <a class="dark-gear" href="#" style="text-decoration: none" title="Edit Vehicle">
+                    <p style="font-size: large; font-weight: 500">{{ vehicle.year }} {{ vehicle.make }} {{ vehicle.model }}
+                        | {{ vehicle.gas_mileage }} MPG
+                    </p>
+                </a>
             {% endfor %}
         {% else %}
             <h4 class="text-muted text-center py-2" style="font-weight: 400">No Vehicles Added Yet</h4>
@@ -76,7 +116,7 @@
     }
 
     .dark-gear:hover {
-        color: #ffffff;
+        color: #646464;
     }
 
 </style>
